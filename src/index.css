@@ -20,6 +20,12 @@ body {
     border: var(--border-thin) solid var(--border-color);
 }
 
+
+.thin-border {
+    border: var(--border-thin) solid var(--border-color);
+
+}
+
 .editor-main-body {
     height: 360px;
 }

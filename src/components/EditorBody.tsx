@@ -10,16 +10,16 @@ export default function EditorBody() {
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelectedLanguage(e.target.value)
     }
-    const handleEditorChange = (newValue: string | undefined, e: ChangeEvent<HTMLElement>) => {
+    const handleEditorChange = (newValue: string | undefined) => {
         setEditorValue(newValue!)
     }
     return (
         <div className="rounded-md overflow-hidden editor-body">
             <EditorTopBar setSelectChange={handleSelectChange} />
             <div className="editor-main-body">
-                <Editor height="50vh" language={selectedLanguage} theme="vs-dark" value={editorValue} onChange={handleEditorChange} />
+                <Editor height="375px" language={selectedLanguage} theme="vs-dark" value={editorValue} onChange={handleEditorChange} />
             </div>
-            <EditorBottomBar />
+            <EditorBottomBar selectedLanguage={selectedLanguage} editorValue={editorValue} setEditorValue={setEditorValue} />
         </div>
     )
 

@@ -39,11 +39,15 @@ body {
 }
 
 .editor-leftside {
-    width: 500px;
+    width: 60px;
 }
 
 .border-bottom {
     border-bottom: var(--border-thin) solid var(--border-color);
+}
+
+.border-top {
+    border-top: var(--border-thin) solid var(--border-color);
 }
 
 .border-right {

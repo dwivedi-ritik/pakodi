@@ -1,14 +1,14 @@
-import { useState } from "react";
 import EditorBody from "./EditorBody"
 import OptionModel from "./OptionModel"
+import { useOptionStore } from "@pakodi/lib/store";
+
 
 export default function Layout() {
-    let [showOptionBox, setShowOptionBox] = useState(false);
+    let store = useOptionStore()
     return (
         <div className="w-2/3 mx-auto mt-12">
-            <EditorBody setShowOptionBox={setShowOptionBox} />
-
-            {showOptionBox && <OptionModel setShowOptionBox={setShowOptionBox} />}
+            <EditorBody />
+            {store.showOptionBox && <OptionModel />}
         </div>
     )
 }

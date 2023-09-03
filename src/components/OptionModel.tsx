@@ -1,54 +1,60 @@
-import { OptionElement } from "@pakodi/types/uiElement.t"
-import { fontFaceList, fontSizeList, themeList, colorSchemaList } from "@pakodi/constants/optionDropdowns"
+import { OptionElement } from "@pakodi/types/types"
+import { fontFaceList, fontSizeList, themeList, colorSchemeList } from "@pakodi/utils/constants"
+import { ChangeEvent } from "react"
+import { useEditorStore } from "@pakodi/lib/store"
+
+import CrossIcon from "./ui/CrossIcon"
 
 interface DropdownProps {
     optionElementList: OptionElement[]
+    dropDownFor: string
 }
 
 
-const CrossIcon = ({ setShowOptionBox }: any) => {
+const Dropdown: React.FC<DropdownProps> = ({ optionElementList, dropDownFor }): React.JSX.Element => {
+    const store = useEditorStore()
+    const handleDropDownChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        switch (dropDownFor) {
+            case 'theme':
+                store.toggleTheme(e.target.value)
+                break
+            default:
+                break
+        }
+    }
     return (
-        <svg onClick={() => setShowOptionBox(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" className="w-6 h-6 absolute top-2 right-2 opacity-50 cursor-pointer hover:opacity-100 ">
-            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
-        </svg>
-    )
-}
-
-
-const Dropdown: React.FC<DropdownProps> = ({ optionElementList }): React.JSX.Element => {
-    return (
-        <select className="bg-gray-700 opacity-75 text-xs font-mono">
+        <select className="bg-gray-700 opacity-75 text-xs font-mono" onChange={handleDropDownChange}>
             {optionElementList.map((item: OptionElement) => {
-                return <option value={item.value}>{item.label}</option>
+                return <option value={item.value} key={item.label}>{item.label}</option>
             })}
         </select>
     )
 }
 
 
-export default function OptionModel({ setShowOptionBox }: any): React.JSX.Element {
+export default function OptionModel(): React.JSX.Element {
     return (<>
         <div className="absolute inset-0 backdrop-blur-sm">
             <div className="flex justify-center mt-[18vh]">
                 <div className="relative w-[420px] h-[260px] thin-border rounded-md option-box text-white">
-                    <CrossIcon setShowOptionBox={setShowOptionBox} />
+                    <CrossIcon />
                     <div className="flex flex-col items-center w-[240px] mx-auto mt-20 gap-2">
                         <div className="flex justify-between w-full px-6">
                             <label className="text-xs font-mono font-medium">Font size:</label>
-                            <Dropdown optionElementList={fontSizeList} />
+                            <Dropdown optionElementList={fontSizeList} dropDownFor="fontSize" />
                         </div>
                         <div className="flex justify-between w-full px-6">
                             <label className="text-xs font-mono font-medium">Font face:</label>
-                            <Dropdown optionElementList={fontFaceList} />
+                            <Dropdown optionElementList={fontFaceList} dropDownFor="fontFace" />
                         </div>
                         <div className="flex justify-between w-full px-6">
                             <label className="text-xs font-mono font-medium">Themes:</label>
-                            <Dropdown optionElementList={themeList} />
+                            <Dropdown optionElementList={themeList} dropDownFor="theme" />
                         </div>
 
                         <div className="flex justify-between w-full px-6">
-                            <label className="text-xs font-mono font-medium">Color scheam:</label>
-                            <Dropdown optionElementList={colorSchemaList} />
+                            <label className="text-xs font-mono font-medium">Color scheme:</label>
+                            <Dropdown optionElementList={colorSchemeList} dropDownFor="colorScheme" />
                         </div>
                     </div>
                     <div className="border-top mt-12 flex justify-end h-10 ">
@@ -60,7 +66,6 @@ export default function OptionModel({ setShowOptionBox }: any): React.JSX.Elemen
                                 Apply
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>

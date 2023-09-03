@@ -9,7 +9,7 @@ export default function EditorTopPanel({ setSelectChange }: SelectComponentProps
     return (
         <div className="h-12 border-bottom position-fixed flex justify-between items-center">
             <p className="text-sm ml-4">
-                Pakcodi <span className="opacity-50 text-xs">(Browser based Text Editor)</span>
+                Pakodi <span className="opacity-50 text-xs">(Browser based Text Editor)</span>
             </p>
             <div className="flex font-mono text-xs mr-4">
 
@@ -18,7 +18,7 @@ export default function EditorTopPanel({ setSelectChange }: SelectComponentProps
                     <option selected value="javascript">Javascript</option>
                     <option value="python">Python</option>
                     <option value="sql">SQL</option>
-                    <option value="json">json</option>
+                    <option value="json">Json</option>
                     <option value="java">Java</option>
                 </select>
             </div>

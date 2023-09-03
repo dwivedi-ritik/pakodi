@@ -4,7 +4,7 @@ import EditorTopBar from "./EditorTopBar"
 import { Editor } from "@monaco-editor/react"
 
 
-export default function EditorBody() {
+export default function EditorBody({ setShowOptionBox }: any) {
     let [selectedLanguage, setSelectedLanguage] = useState('javascript')
     let [editorValue, setEditorValue] = useState('')
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -19,7 +19,7 @@ export default function EditorBody() {
             <div className="editor-main-body">
                 <Editor height="375px" language={selectedLanguage} theme="vs-dark" value={editorValue} onChange={handleEditorChange} />
             </div>
-            <EditorBottomBar selectedLanguage={selectedLanguage} editorValue={editorValue} setEditorValue={setEditorValue} />
+            <EditorBottomBar selectedLanguage={selectedLanguage} editorValue={editorValue} setEditorValue={setEditorValue} setShowOptionBox={setShowOptionBox} />
         </div>
     )
 

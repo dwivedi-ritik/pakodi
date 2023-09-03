@@ -18,6 +18,9 @@ const Dropdown: React.FC<DropdownProps> = ({ optionElementList, dropDownFor }): 
             case 'theme':
                 store.toggleTheme(e.target.value)
                 break
+            case 'fontSize':
+                store.setFontSize(parseInt(e.target.value))
+                break
             default:
                 break
         }
@@ -25,6 +28,13 @@ const Dropdown: React.FC<DropdownProps> = ({ optionElementList, dropDownFor }): 
     return (
         <select className="bg-gray-700 opacity-75 text-xs font-mono" onChange={handleDropDownChange}>
             {optionElementList.map((item: OptionElement) => {
+                if (dropDownFor === "fontSize" && store.fontSize == parseInt(item.value)) {
+                    return <option selected value={item.value} key={item.label}>{item.label}</option>
+                }
+
+                if (dropDownFor === "theme" && store.theme == item.value) {
+                    return <option selected value={item.value} key={item.label}>{item.label}</option>
+                }
                 return <option value={item.value} key={item.label}>{item.label}</option>
             })}
         </select>

@@ -21,7 +21,7 @@ export default function EditorBody() {
             <EditorTopBar setSelectChange={handleSelectChange} />
             <div className="editor-main-body">
                 <Editor height="375px" language={selectedLanguage} theme={store.theme} value={editorValue} onChange={handleEditorChange}
-                    options={{ "fontSize": 12 }}
+                    options={{ "fontSize": store.fontSize }}
                 />
             </div>
             <EditorBottomBar selectedLanguage={selectedLanguage} editorValue={editorValue} setEditorValue={setEditorValue} />

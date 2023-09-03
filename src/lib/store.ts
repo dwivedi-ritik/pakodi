@@ -23,7 +23,7 @@ export const useEditorStore = create<EditorStore>((set) => ({
     theme: EDITOR_THEME.DARK,
     colorScheme: EDITOR_COLOR_SCHEME.VS_DARK,
     fontFace: 'CascadiaCode',
-    fontSize: 12,
+    fontSize: 14,
     toggleTheme(mode: string) {
         set((state) => ({
             ...state,
